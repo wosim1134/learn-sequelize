@@ -48,7 +48,7 @@ class User extends Sequelize.Model {
             charset: 'utf8', //
             collate: 'utf8_general_ci', //
                                         //
-                                        //
+    //
         });
     }
     //
