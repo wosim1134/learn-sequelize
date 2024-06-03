@@ -6,6 +6,12 @@ const nunjucks = require('nunjucks'); //
 // models 폴더의 sequelize 객체 가져오기
 const { sequelize } = require('./models');  // 폴더내의 index.js 파일은 require할 때 이름 생략 가능
 
+const indexRouter = require('./routes'); //
+const usersRouter = require('./routes/users'); //
+const commentsRouter = require('./routes/comments'); //
+
+
+
 const app = express(); //
 app.set('port', process.env.PORT || 3001); //
 app.set('view engine', 'html'); //
@@ -36,6 +42,10 @@ app.use(express.json());
 
 // URL-encoded 형식 요청 본문 파싱을 위한 미들웨어 추가
 app.use(express.urlencoded({ extended: false }));
+
+app.use('/', indexRouter); //
+app.use('/users', usersRouter); //
+app.use('/comments', commentsRouter); //
 
 // 라우터가 없는 경우 404 에러를 발생시키는 미들웨어 추가
 app.use((req, res, next) => {
